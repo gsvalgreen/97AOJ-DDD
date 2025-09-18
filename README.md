@@ -20,9 +20,9 @@ Liste os subdomínios do sistema e classifique-os como **Core Domain**, **Suppor
 
 | **Subdomínio**                              | **Descrição**                                                                                        | **Tipo**         |
 |---------------------------------------------|------------------------------------------------------------------------------------------------------|------------------|
-| Certificação de sustentabilidade            | Avaliar eventos das cadeias de suprimento de um produtor e emissão de selo de sustentabilidade       | Core Domain      |
+| Certificação de sustentabilidade            | Avaliar movimentações das cadeias de suprimento de um produtor e emissão de selo de sustentabilidade       | Core Domain      |
 | Gestão de Produtores                        | Cadastro, verificação e manutenção do histórico de produtores que buscam certificação para crédito verde                                                                                                                                                | Core Domain      |
-| Rastreabilidade de commodities              | Manter registros de eventos na cadeia de suprimentos dos produtores                                  | Supporting       |
+| Rastreabilidade de commodities              | Manter registros de movimentações na cadeia de suprimentos dos produtores                                  | Supporting       |
 | Acesso ao crédito                           | Integrar produtores certificados com Fornecedores de Crédito.                                        | Supporting       |
 | Integração com Bureaus de crédito           | Consulta scores e análises de crédito de Bureaus                                                     | Generic          |
 | Integração com Dados Governamentais         | Consulta Informações e certificações de orgãos do governo (IBAMA, Secr. Fazenda, Justiça)            | Generic          |
@@ -36,8 +36,8 @@ Liste e descreva os bounded contexts identificados no projeto. Explique a respon
 |-------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------|
 | Contexto de Produtores        | Gerenciar o cadastro e histórico de produtores rurais                                               | Gestão de Produtores         |
 | Contexto de Rastreabilidade   | Processa e controla registro de movimentação de commodities ao longo da cadeia de suprimentos       | Rastreabilidade de commodities                  |
-| Contexto de Certificação      | Avalia histórico do produtor e de sua cadeia de suprimento para emitir certificados                 | Certificação de sustentabilidade, Gestão de Produtores, Integração com Dados Governamentais     |
-| Contexto de Acesso a crédito verde   | Para produtores certificados, avalia dados de crédito e integra com fornecedores de crédito       | Certificação de sustentabilidade, Acesso ao crédito, Integração com Bureaus de crédito          |
+| Contexto de Certificação      | Avalia histórico do produtor e de sua cadeia de suprimento para emitir certificados                 | Certificação de sustentabilidade, Gestão de Produtores, Integração com Dados Governamentais, Integração com Bureaus de crédito   |
+| Contexto de Acesso a crédito verde   | Para produtores certificados, integra com fornecedores de crédito       | Certificação de sustentabilidade, Acesso ao crédito         |
 
 ---
 
@@ -48,8 +48,9 @@ Explique como os bounded contexts vão se comunicar. Use os padrões de comunica
 
 | **De (Origem)**              | **Para (Destino)**          | **Forma de Comunicação**    | **Exemplo de Evento/Chamada**                             |
 |------------------------------|-----------------------------|-----------------------------|-----------------------------------------------------------|
-| Contexto de Produtores       | Contexto de Rastreabilidade | Mensageria (Evento)         | "Produtor cadastrado"                                     |
-| Contexto de Rastreabilidade  | Contexto de Certficação     | API                         | Obter informações de rastreabilidade pelo ID do produtor  |
+| Contexto de Produtores       | Contexto de Rastreabilidade            | Mensageria (Evento)         | "Produtor cadastrado"                                     |
+| Contexto de Rastreabilidade  | Contexto de Certficação                | API                         | Obter informações de rastreabilidade pelo ID do produtor  |
+| Contexto de Certificação     | Contexto de Acesso a crédito verde     | Mensageria (Evento)         | "Produtor certificado"                                    |
 
 ---
 
@@ -57,10 +58,16 @@ Explique como os bounded contexts vão se comunicar. Use os padrões de comunica
 Liste os termos principais da Linguagem Ubíqua do projeto. Explique brevemente cada termo.
 
 | **Termo**                    | **Descrição**                                                                                   |
-|------------------------------|-----------------------------------------------------------------------------------------------|
-| Ex.: Consulta                | Sessão médica entre paciente e médico.                                                       |
-| Ex.: Paciente                | Usuário que agenda e realiza consultas.                                                      |
-| Ex.: Receita                 | Prescrição médica gerada durante a consulta.                                                 |
+|------------------------------|-----------------------------------------------------------------------------------------------  |
+| Produtor                     | Agricultor ou cooperativa que produz commodities.                                               |
+| Commodity                    | Produto Agrícola rastreável (Ex. Soja, café, milho, algodão...).                                |
+| Rastreabilidade              | Sequência de movimentações de uma commodity do produtor até o destino final.                    |
+| Movimentação                 | Registro de armazenamento, processamento e/ou transporte de uma commodity.                      |
+| Cadeia de suprimento         | Conjunto de informações sobre produtores e movimentações das suas commodities.                  |
+| Certificação                 | Selo de sustentabilidade que valida boas práticas agrícolas de um Produtor.                     |
+| Crédito Verde                | Financiamento oferecido a Produtores certificados.                                              |
+| Bureau de crédito            | Fornecedor de informações e avaliações de crédito sobre um produtor (ex. Serasa, Boa Vista, SPC)|
+| Histórico                    | Registro sequencial das informações e certificações do Produtor.                                |
 
 ---
 
