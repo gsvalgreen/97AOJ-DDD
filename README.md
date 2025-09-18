@@ -6,34 +6,38 @@ Identificar os subdomínios do projeto, classificá-los (Core, Supporting, Gener
 ---
 
 ## 1. Nome do Projeto
-**[Escreva o nome do sistema ou aplicação que está sendo modelado]**
+AgroTrace
 
 ---
 
 ## 2. Objetivo Principal do Projeto
-**[Explique o propósito do sistema em uma ou duas frases]**  
-*Exemplo:* Facilitar o agendamento de consultas médicas online entre pacientes e médicos.
+Garantir a rastreabilidade de ponta a ponta de commodities agrícolas (soja, café, etc.), utilizando dados da cadeia de suprimentos para certificar a origem do produto e facilitar o acesso a crédito verde (green finance) para produtores rurais sustentáveis.
 
 ---
 
 ## 3. Identificação dos Subdomínios
 Liste os subdomínios do sistema e classifique-os como **Core Domain**, **Supporting Subdomain** ou **Generic Subdomain**.
 
-| **Subdomínio**              | **Descrição**                                                                                      | **Tipo**         |
-|-----------------------------|--------------------------------------------------------------------------------------------------|------------------|
-| Ex.: Gestão de Consultas    | Gerencia o agendamento, consulta por vídeo e emissão de atestados e receitas.                   | Core Domain      |
-| Ex.: Cadastro de Usuários   | Gerencia o login, cadastro e permissões dos médicos e pacientes.                                | Supporting       |
-| Ex.: Pagamentos             | Processa pagamentos e repassa valores para médicos.                                             | Generic          |
+| **Subdomínio**                              | **Descrição**                                                                                        | **Tipo**         |
+|---------------------------------------------|------------------------------------------------------------------------------------------------------|------------------|
+| Certificação de sustentabilidade            | Avaliar eventos das cadeias de suprimento de um produtor e emissão de selo de sustentabilidade       | Core Domain      |
+| Gestão de Produtores                        | Cadastro, verificação e manutenção do histórico de produtores que buscam certificação para crédito verde                                                                                                                                                | Core Domain      |
+| Rastreabilidade de commodities              | Manter registros de eventos na cadeia de suprimentos dos produtores                                  | Supporting       |
+| Acesso ao crédito                           | Integrar produtores certificados com Fornecedores de Crédito.                                        | Supporting       |
+| Integração com Bureaus de crédito           | Consulta scores e análises de crédito de Bureaus                                                     | Generic          |
+| Integração com Dados Governamentais         | Consulta Informações e certificações de orgãos do governo (IBAMA, Secr. Fazenda, Justiça)            | Generic          |
 
 ---
 
 ## 4. Desenho dos Bounded Contexts
 Liste e descreva os bounded contexts identificados no projeto. Explique a responsabilidade de cada um.
 
-| **Bounded Context**           | **Responsabilidade**                                                                                 | **Subdomínios Relacionados** |
+| **Bounded Context**           | **Responsabilidade**                                                                                | **Subdomínios Relacionados** |
 |-------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------|
-| Ex.: Contexto de Consultas    | Gerencia as consultas médicas, do agendamento à finalização, incluindo emissão de receitas.         | Gestão de Consultas         |
-| Ex.: Contexto de Pagamentos   | Processa cobranças de consultas e repasses para médicos ou clínicas.                              | Pagamentos                  |
+| Contexto de Produtores        | Gerenciar o cadastro e histórico de produtores rurais                                               | Gestão de Produtores         |
+| Contexto de Rastreabilidade   | Processa e controla registro de movimentação de commodities ao longo da cadeia de suprimentos       | Rastreabilidade de commodities                  |
+| Contexto de Certificação      | Avalia histórico do produtor e de sua cadeia de suprimento para emitir certificados                 | Certificação de sustentabilidade, Gestão de Produtores, Integração com Dados Governamentais     |
+| Contexto de Acesso a crédito verde   | Para produtores certificados, avalia dados de crédito e integra com fornecedores de crédito       | Certificação de sustentabilidade, Acesso ao crédito, Integração com Bureaus de crédito          |
 
 ---
 
