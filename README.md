@@ -46,10 +46,10 @@ Explique como os bounded contexts vão se comunicar. Use os padrões de comunica
 - **Mensageria/Eventos (desacoplado):** Ex.: O Contexto de Consultas emite um evento "Consulta Finalizada", consumido pelo Contexto de Pagamentos.
 - **APIs (síncrono):** Ex.: O Contexto de Pagamentos consulta informações de preços no Contexto de Consultas.
 
-| **De (Origem)**              | **Para (Destino)**          | **Forma de Comunicação**    | **Exemplo de Evento/Chamada**                  |
-|------------------------------|-----------------------------|-----------------------------|-----------------------------------------------|
-| Contexto de Consultas        | Contexto de Pagamentos      | Mensageria (Evento)         | "Consulta Finalizada"                         |
-| Contexto de Cadastro          | Contexto de Consultas      | API                         | Obter informações de um Paciente pelo ID      |
+| **De (Origem)**              | **Para (Destino)**          | **Forma de Comunicação**    | **Exemplo de Evento/Chamada**                             |
+|------------------------------|-----------------------------|-----------------------------|-----------------------------------------------------------|
+| Contexto de Produtores       | Contexto de Rastreabilidade | Mensageria (Evento)         | "Produtor cadastrado"                                     |
+| Contexto de Rastreabilidade  | Contexto de Certficação     | API                         | Obter informações de rastreabilidade pelo ID do produtor  |
 
 ---
 
