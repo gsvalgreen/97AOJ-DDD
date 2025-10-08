@@ -1,0 +1,21 @@
+@startuml
+' Context Map para sistema de certificação de sustentabilidade
+
+skinparam rectangle {
+  BackgroundColor<<Core>> LightGoldenrodYellow
+  BackgroundColor<<Supporting>> HoneyDew
+  BackgroundColor<<Generic>> Lavender
+  BorderColor black
+}
+
+rectangle "Contexto de Produtores\n(Core Domain)" as Produtores <<Core>>
+rectangle "Contexto de Certificação\n(Core Domain)" as Certificacao <<Core>>
+rectangle "Contexto de Rastreabilidade\n(Supporting)" as Rastreabilidade <<Supporting>>
+rectangle "Contexto de Acesso ao\nCrédito Verde\n(Supporting)" as Credito <<Supporting>>
+
+' Relacionamentos principais
+Produtores --> Rastreabilidade : "Customer-Supplier\n(Produtor cadastrado é pré-requisito)"
+Rastreabilidade --> Certificacao : "Anticorruption Layer (ACL)\n(Traduz movimentações para serem verificados no contexto de certificação)"
+Certificacao <--> Credito : "Shared Kernel\n(Certificação válida libera crédito verde)"
+
+@enduml
