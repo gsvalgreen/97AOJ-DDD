@@ -1,29 +1,40 @@
 # 📌 Roteiro para a Atividade de Event Storming
 
 ## **1️⃣ Preparação (5-10 min)**
-- Cada aluno ou grupo escolhe um **processo central** do trabalho.
-    - Exemplo: Cadastro de clientes, processo de pagamento, controle de estoque, gestão de chamados.
+    - Gestão do produtor
 ---
 
 ## **2️⃣ Mapeamento de Eventos de Domínio (15-20 min)**
-- Pergunta-chave: **"O que acontece no processo?"** *(sempre no passado)*
-- Cada grupo lista eventos importantes.
-    - **Exemplo para um sistema de vendas:**
-        - **Pedido Criado**
-        - **Pagamento Aprovado**
-        - **Pedido Enviado**
-        - **Pedido Entregue**
-- Organizar os eventos em ordem cronológica.
+    - Perfil criado
+    - Documentação enviada
+    - Documentação validada
+    - Perfil aprovado
 
 ---
 
 ## **3️⃣ Identificação de Comandos e Atores (10-15 min)**
-- Pergunta-chave: **"O que causou esse evento?"**
-- Relacionar **comandos** (ações ativas) com os **atores** (usuários ou sistemas externos).
-    - **Exemplo:**
-        - **Comando:** "Finalizar Pedido"
-        - **Ator:** Cliente
-        - **Evento gerado:** "Pedido Criado"
+```
+Comando: "Criar o perfil"
+Ator: Produtor
+vento gerado: "Perfil criado"
+```
+
+```
+Comando: "Enviar a documentação"
+Ator: Produtor
+Evento gerado: "Documentação enviada"
+```
+```
+Comando: "Validar a documentação"
+Ator: Validador
+Evento gerado: "Documentação validada"
+```
+
+```
+Comando: "Avaliar o perfil"
+Ator: Analista
+Evento gerado: "Perfil aprovado"
+```
 
 ---
 
