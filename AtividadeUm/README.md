@@ -113,14 +113,48 @@ Desenhe um diagrama que mostre:
 
 Use ferramentas como **Miro**, **Lucidchart** ou mesmo papel e caneta para criar seu diagrama e adicionar ao projeto.
 
+```mermaid
+graph TD
+    subgraph BC_PROD [Contexto de Produtores]
+        direction TB
+        SD_GP(Gestão de Produtores)
+    end
+    BC_PROD:::bcStyle
+
+    subgraph BC_RAST [Contexto de Rastreabilidade]
+        direction TB
+        SD_Rast(Rastreabilidade de commodities)
+    end
+    BC_RAST:::bcStyle
+
+    subgraph BC_CERT [Contexto de Certificação]
+        direction TB
+        SD_CERT_S(Certificação de sustentabilidade)
+        SD_GP_C(Gestão de Produtores)
+        SD_GOV(Integração com Dados Governamentais)
+        SD_BC(Integração com Bureaus de crédito)
+    end
+    BC_CERT:::bcStyle
+    
+    subgraph BC_CRED [Contexto de Acesso a crédito verde]
+        direction TB
+        SD_CERT_A(Certificação de sustentabilidade)
+        SD_ACRED(Acesso ao crédito)
+    end
+    BC_CRED:::bcStyle
+    
+    BC_PROD -->|Usa dados do Produtor| BC_RAST
+    
+    BC_PROD --o|Fornece Dados do Produtor| BC_CERT
+    
+    BC_RAST -->|Fornece Histórico da Cadeia| BC_CERT
+    
+    BC_CERT -->|Emite Certificado| BC_CRED
+
+ 
+```
 ---
 
-## Dicas para Apresentação
 
-- Explique cada parte do design, focando no **Core Domain** (o coração do negócio).
-- Justifique por que certos subdomínios foram classificados como Supporting ou Generic.
-- Destaque como a comunicação entre bounded contexts foi pensada para ser escalável.
-
----
 
 Boa sorte com a dinâmica! 🚀
