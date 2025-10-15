@@ -116,18 +116,25 @@ classDiagram
         +CertificacaoId
         +EnderecoId
         +Estado
+        +RegistrarMovimentacao()
+        +IniciarProducao()
+        +EncerrarProducao()
     }
     class Produtor {
         +ProdutorId
         +Nome
+        +SolicitarCadastro()
     }
     class Commodity {
         +Tipo
         +Quantidade
+        +RegistrarCommodity()
     }
     class Certificacao {
         +CertificacaoId
         +Status
+        +ValidarHistorico()
+        +GerarSeloVerde()
     }
     class Endereco {
         +Logradouro
