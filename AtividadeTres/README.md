@@ -78,11 +78,12 @@ Regras:
 
 **Linguagem livre** (ex.: C#, Java, Kotlin, TS). Exemplo (C# assíncrono, adapte nomes):
 ```csharp
-public interface I[Agregado]Repository
+public interface IMovimentacaoRepository
 {
-    Task<[Agregado]?> ObterPorIdAsync(Guid id, CancellationToken ct = default);
-    Task AdicionarAsync([Agregado] entidade, CancellationToken ct = default);
-    Task SalvarAsync([Agregado] entidade, CancellationToken ct = default);
+    Task<Movimentacao> ObterPorIdAsync(Guid id, CancellationToken ct = default);
+    Task<List<Movimentacao>> ObterPorIdProdutorECommodityAsync(Guid idProdutor, Guid idCommodity, CancellationToken ct = default);
+    Task AdicionarAsync(Movimentacao entidade, CancellationToken ct = default);
+    Task SalvarAsync(Movimentacao entidade, CancellationToken ct = default);
 }
 ```
 
@@ -94,9 +95,10 @@ Defina **2–4 eventos** com **payload mínimo** e **momento de publicação** (
 
 | Evento | Quando ocorre | Payload mínimo | Interno/Integração | Observações |
 |---|---|---|---|---|
-| **[EventoXOcorrido]** | [ao confirmar/remarcar/etc.] | [ids, valores necessários] | [Interno/Integração] | [idempotência, consumidor] |
-| **[EventoYOcorrida]** | [...] | [...] | [...] | [...] |
-| **[EventoZOcorrida]** | [...] | [...] | [...] | [...] |
+| **ProducaoIniciada** | Ao registrar commodity | id da commodity, id do produtor, tipo da commodity, descrição do preparo, data/hora da manipulação | Interno | Movimentação inicial não tem predecessora |
+| **CommodityMovimentada** | Ao manipular a commodity em produção | id da commodity, id do produtor, tipo da commodity, descrição do evento, data/hora da manipulação, id movimentação anterior  | Interno | A movimentação anterior é atualizada com o id da nova movimentação para manter a sequencia valida |
+| **ProducaoEncerrada** | Ao vender ou transferir produto colhido para terceiros | id da commodity, id do produtor, tipo da commodity, descrição do evento, data/hora da manipulação, id movimentação anterior | Interno | A movimentação anterior é atualizada com o id da nova movimentação para manter a sequencia valida e não possui sucessora |
+| **MovimentacaoValidada** | Ao inserir ou atualizar alguma movimentação | Id do Produtor, Id da Commodity, Id da Movimentação | Integração | Se a sequencia de movimentações não inclui a nova movimentação, o certificado é invalidado |
 
 ---
 
