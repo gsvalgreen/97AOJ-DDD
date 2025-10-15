@@ -108,27 +108,35 @@ Defina **2–4 eventos** com **payload mínimo** e **momento de publicação** (
 **Exemplo de esqueleto Mermaid:**
 ```mermaid
 classDiagram
-  class AgregadoPrincipal {
-    +Guid Id
-    +Guid OutroAgregadoId
-    +VOImportante Valor
-    +Status Estado
-    +Operacao1(args)
-    +Operacao2(args)
-  }
-
-  class VOImportante {
-    +Atributo1
-    +Atributo2
-    +OperacaoVO()
-  }
-
-  class OutroAgregado {
-    +Guid Id
-  }
-
-  AgregadoPrincipal --> OutroAgregado : por Id
-  AgregadoPrincipal --> VOImportante
+    direction TB
+    class Movimentacao {
+        MovimentacaoId
+        +IdMovimentacaoAnterior
+        +IdMovimentacaoSeguinte
+        +CertificacaoId
+        +EnderecoId
+        +Estado
+    }
+    class Produtor {
+        +ProdutorId
+        +Nome
+    }
+    class Commodity {
+        +Tipo
+        +Quantidade
+    }
+    class Certificacao {
+        +CertificacaoId
+        +Status
+    }
+    class Endereco {
+        +Logradouro
+        +Cidade
+    }
+    Movimentacao "1" *-- "1" Produtor: contém
+    Movimentacao "1" *-- "1" Commodity: contém
+    Movimentacao ..> Certificacao: "referencia por Id"
+    Movimentacao ..> Endereco: "referencia por Id"
 ```
 
 ---
