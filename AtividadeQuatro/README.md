@@ -39,31 +39,32 @@ Evento gerado: "Perfil aprovado"
 ---
 
 ## **4️⃣ Descobrindo Regras e Políticas de Negócio (10-15 min)**
-- Pergunta-chave: **"Quais regras precisam ser seguidas nesse processo?"**
-- Identificar **políticas** (regras automáticas ou manuais).
-    - **Exemplo:**
-        - **Se o pagamento não for aprovado em 24h, cancelar pedido.**
-- Mapear **integrações externas** (ex: APIs, sistemas de terceiros).
+
+| **Regras**                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------------|
+| Obrigatoriamente deve ser informado os seguintes dados: CPF, CAF, CCIR, dados de contato e endereço                      |
+| O envio de documentos deve possuir imagens legiveis para análise                                                         |
+| Documentação com imagens ilegiveis ou inválidos, disparam uma nova solicitação de cadastro                               |
+| Avaliações de perfis abertas e com status 'pendente' a 5 dias irão ser canceladas e deve ser solicitado um novo cadastro |
 
 ---
 
 ## **5️⃣ Identificação dos Bounded Contexts (10 min)**
-- Pergunta-chave: **"Quem é responsável por cada parte do processo?"**
-- Separar os eventos e comandos em **diferentes áreas do sistema**.
-    - **Exemplo:**
-        - **Contexto de Pedidos** (Criação e status dos pedidos)
-        - **Contexto de Pagamento** (Autorização financeira)
-        - **Contexto de Logística** (Entrega e rastreamento)
+
+| **Bounded Context**                | **Responsabilidade**                                         |
+|------------------------------------|--------------------------------------------------------------|
+| Contexto de Produtores             | Gerenciar o cadastro e histórico de produtores rurais        |
+| Contexto de Certificação           | Avalia histórico do produtor e de sua cadeia de suprimento   |
 
 ---
 
 ## **6️⃣ Discussão e Refinamento (15 min)**
-- Cada grupo apresenta seu fluxo.
-- **Perguntas para discussão:**
-    - Há eventos que poderiam ser melhor detalhados?
-    - Existem regras de negócio não mapeadas?
-    - Algum comando ou evento depende de um sistema externo?
-- Refinar o modelo conforme necessário.
+
+| **Melhorias**                                                                | 
+|------------------------------------------------------------------------------|
+| Contração de serviços externos para validação da biometria e da documentação |
+| Deve ser estipulado regras para considerar um "perfil aprovado"              |
+| Deve ser estipulado regras para considerar um "perfil reprovado"             |
 
 ---
 
